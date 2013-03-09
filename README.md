@@ -9,5 +9,7 @@ Please take to notice:
 
 - The important class is the GMViewController. The code is well documented and should speak for itself.
 
+- Make a long press on the marker and you can drag the marker arround and set it to another position.
+
 If you have further questions or notes please feel free to contact:
 robert.weindl@blackstack.net
