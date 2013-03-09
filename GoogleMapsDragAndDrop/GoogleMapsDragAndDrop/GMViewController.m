@@ -41,10 +41,19 @@
                                                                     zoom:GOOGLE_MAPS_DEFAULT_ZOOM_LEVEL]];
     [self.googleMapsView setMapType:kGMSTypeNormal];
 
-    // Place a sample marker.
-    GMSMarkerOptions *markerOptions = [[GMSMarkerOptions alloc] init];
-    markerOptions.position = CLLocationCoordinate2DMake(40.761869, -73.975282);
-    self.marker = [self.googleMapsView addMarkerWithOptions:markerOptions];
+    // Place sample marker to the map.
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects: [[CLLocation alloc] initWithLatitude:40.767720 longitude:-74.011674],
+                             [[CLLocation alloc] initWithLatitude:40.766290 longitude:-73.953309],
+                             [[CLLocation alloc] initWithLatitude:40.814637 longitude:-73.974424],
+                             [[CLLocation alloc] initWithLatitude:40.761869 longitude:-73.975282],
+                             [[CLLocation alloc] initWithLatitude:40.735469 longitude:-73.985753], nil];
+    
+    for (CLLocation *location in array)
+    {
+        GMSMarkerOptions *marker = [[GMSMarkerOptions alloc] init];
+        marker.position = location.coordinate;
+        [self.googleMapsView addMarkerWithOptions:marker];
+    }
     
     // Store the initial position of the sample marker.
     self.initialMarkerPosition = self.marker.position;
@@ -62,84 +71,103 @@
 {
     // Extract the touch point on the GoogleMaps view.
     CGPoint touchPoint = [recognizer locationInView:self.googleMapsView];
-    
-    // The rect arround the current touch point. It is used to check wheter a point was long pressed.
-    // Furthermore the rect allows you to controll if a user also dragged the marker.
-    CGPoint markerPoint = [self.googleMapsView.projection pointForCoordinate:self.marker.position];
-    CGRect markerVirtualBox = CGRectMake(markerPoint.x - (MARKER_DETECTION_BOX / 2.0f),
-                                         markerPoint.y - (MARKER_DETECTION_BOX / 2.0f),
-                                         MARKER_DETECTION_BOX,
-                                         MARKER_DETECTION_BOX);
-    
-    // In the UIGestureRecognizerStateBegan there must be a check if there was a long press on the marker.
+
+    // Before the rect can be created the closest marker to the touch point must be determined.
     if (UIGestureRecognizerStateBegan == recognizer.state)
     {
-        // Check if touch point is in the rect.
-        if (CGRectContainsPoint(markerVirtualBox, touchPoint))
-        {
-            // Disable the gestures of the GoogleMaps view for UIX.
-            [self enableGoogleMapViewSettings:NO];
-            
-            // Restore the state of the marker that it has not been dragged so far.
-            self.didDragMarker = NO;
-            
-            // Save that marker was long pressed.
-            self.didTapMarker = YES;
-            
-            // Save the initial marker position.
-            self.initialMarkerPosition = self.marker.position;
-            
-            // Calculate the new marker point - for better display the marker is shown slightly above of the touch.
-            CGPoint newMarkerPoint = CGPointMake(markerPoint.x , markerPoint.y - MARKER_TOUCH_DISTANCE);
-
-            // Calculate the coordinate of the marker point.
-            CLLocationCoordinate2D coordinate = [self.googleMapsView.projection coordinateForPoint:newMarkerPoint];
-            
-            // Set the new coordinate to the marker.
-            self.marker.position = coordinate;
-        }
+        self.marker = [self determineClosestMarkerForTouchPoint:touchPoint];
         
-    }
-    else if (UIGestureRecognizerStateChanged == recognizer.state)
-    {
-        // Check if the marker was long pressed before.
-        if (self.didTapMarker)
+        // Deselect the marker if it is not the selected one.
+        if (self.googleMapsView.selectedMarker != self.marker)
         {
-            // The user startet to drag the marker. So there is no longer an intention to restore the old state.
-            if (!CGRectContainsPoint(markerVirtualBox, touchPoint) &&
-                NO == self.didDragMarker)
+            self.googleMapsView.selectedMarker = nil;
+        }
+    }
+    
+    // Check if a marker could be determined
+    if (nil != self.marker)
+    {
+        // The rect arround the current touch point. It is used to check wheter a point was long pressed.
+        // Furthermore the rect allows you to controll if a user also dragged the marker.
+        CGPoint markerPoint = [self.googleMapsView.projection pointForCoordinate:self.marker.position];
+        CGRect markerVirtualBox = CGRectMake(markerPoint.x - (MARKER_DETECTION_BOX / 2.0f),
+                                             markerPoint.y - (MARKER_DETECTION_BOX / 2.0f),
+                                             MARKER_DETECTION_BOX,
+                                             MARKER_DETECTION_BOX);
+        
+        // In the UIGestureRecognizerStateBegan there must be a check if there was a long press on the marker.
+        if (UIGestureRecognizerStateBegan == recognizer.state)
+        {
+            // Check if touch point is in the rect.
+            if (CGRectContainsPoint(markerVirtualBox, touchPoint))
             {
-                // The marker was dragged.
-                self.didDragMarker = YES;
+                // Disable the gestures of the GoogleMaps view for UIX.
+                [self enableGoogleMapViewSettings:NO];
+
+                // Reset the control properties.
+                self.didTapMarker = YES;
+                self.didDragMarker = NO;
+                
+                // Save the initial marker position.
+                self.initialMarkerPosition = self.marker.position;
+                
+                // Calculate the new marker point - for better display the marker is shown slightly above of the touch.
+                CGPoint newMarkerPoint = CGPointMake(markerPoint.x , markerPoint.y - MARKER_TOUCH_DISTANCE);
+
+                // Calculate the coordinate of the marker point.
+                CLLocationCoordinate2D coordinate = [self.googleMapsView.projection coordinateForPoint:newMarkerPoint];
+                
+                // Set the new coordinate to the marker.
+                self.marker.position = coordinate;
             }
-            
-            // Calculate the new marker point - for better display the marker is shown slightly above of the touch.
-            CGPoint newMarkerPoint = CGPointMake(touchPoint.x , touchPoint.y - MARKER_TOUCH_DISTANCE);
-            
-            // Calculate the coordinate of the marker point.
-            CLLocationCoordinate2D coordinate = [self.googleMapsView.projection coordinateForPoint:newMarkerPoint];
-            
-            // Set the new coordinate to the marker.
-            self.marker.position = coordinate;
+            else
+            {
+                // No marker was hit so deselect the current marker and restore the default state.
+                self.googleMapsView.selectedMarker = nil;
+                [self resetControlStates];
+            }
         }
-    }
-    else
-    {
-        // Only store the new position of the marker if there was a drag action.
-        if (!self.didDragMarker)
+        else if (UIGestureRecognizerStateChanged == recognizer.state)
         {
-            // Restore the old position.
-            self.marker.position = self.initialMarkerPosition;
+            // Check if the marker was long pressed before.
+            if (self.didTapMarker)
+            {
+                // The user startet to drag the marker. So there is no longer an intention to restore the old state.
+                if (!CGRectContainsPoint(markerVirtualBox, touchPoint) &&
+                    NO == self.didDragMarker)
+                {
+                    // The marker was dragged.
+                    self.didDragMarker = YES;
+                }
+                
+                // Calculate the new marker point - for better display the marker is shown slightly above of the touch.
+                CGPoint newMarkerPoint = CGPointMake(touchPoint.x , touchPoint.y - MARKER_TOUCH_DISTANCE);
+                
+                // Calculate the coordinate of the marker point.
+                CLLocationCoordinate2D coordinate = [self.googleMapsView.projection coordinateForPoint:newMarkerPoint];
+                
+                // Set the new coordinate to the marker.
+                self.marker.position = coordinate;
+            }
         }
-        
-        // Save that marker is no long pressed.
-        self.didTapMarker = NO;
-        
-        // Enable the scroll gestures of the GoogleMaps view.
-        self.googleMapsView.settings.scrollGestures = YES;
+        else if (UIGestureRecognizerStateEnded == recognizer.state)
+        {
+            // Only store the new position of the marker if there was a drag action.
+            if (!self.didDragMarker)
+            {
+                // Restore the old position.
+                self.marker.position = self.initialMarkerPosition;
+            }
+            [self resetControlStates];
+        }
+        else
+        {
+            [self resetControlStates];
+        }
     }
 }
 
+#pragma mark - Map Control.
 // Enables or disables all GoogleMap View Settings.
 - (void)enableGoogleMapViewSettings:(BOOL)enable
 {
@@ -157,6 +185,49 @@
         self.googleMapsView.settings.tiltGestures = NO;
         self.googleMapsView.settings.rotateGestures = NO;
     }
+}
+
+#pragma mark - Helper methods.
+// Determines the closest marker 
+- (id<GMSMarker>)determineClosestMarkerForTouchPoint:(CGPoint)touchPoint
+{
+    // Initialize the return value.
+    id<GMSMarker> resultMarker = nil;
+    
+    // Initialize the initial distance as the maximum of CGFloat.
+    CGFloat distance = CGFLOAT_MAX;
+    CGFloat tempDistance = CGFLOAT_MAX;
+    
+    // Determine the closest marker to the current touch point
+    for (id<GMSMarker> marker in self.googleMapsView.markers)
+    {
+        CGPoint markerPoint = [self.googleMapsView.projection pointForCoordinate:marker.position];
+        CGFloat xDist = (touchPoint.x - markerPoint.x);
+        CGFloat yDist = (touchPoint.y - markerPoint.y);
+        tempDistance = sqrt((xDist * xDist) + (yDist * yDist));
+        
+        // Check if a closer marker was found.
+        if (tempDistance <= distance)
+        {
+            resultMarker = marker;
+            distance = tempDistance;
+        }
+    }
+    return resultMarker;
+}
+
+// Reset control states.
+- (void)resetControlStates
+{
+    // Reset the control properties.
+    self.didTapMarker = NO;
+    self.didDragMarker = NO;
+    
+    // Enable the gestures of the GoogleMaps view for UIX.
+    [self enableGoogleMapViewSettings:YES];
+    
+    // Marker is no longer selected.
+    self.marker = nil;
 }
 
 @end
