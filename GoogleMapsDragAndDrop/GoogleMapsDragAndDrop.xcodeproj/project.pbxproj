@@ -32,6 +32,7 @@
 		175D2B2816EAA9D800FED984 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2716EAA9D800FED984 /* OpenGLES.framework */; };
 		175D2B2A16EAA9DE00FED984 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2916EAA9DE00FED984 /* QuartzCore.framework */; };
 		175D2B2C16EAA9E400FED984 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */; };
+		DCCE515417549E6D00766B44 /* GMPrivateMapsKey.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		175D2B2716EAA9D800FED984 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		175D2B2916EAA9DE00FED984 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DCCE515217549E6D00766B44 /* GMPrivateMapsKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrivateMapsKey.h; sourceTree = "<group>"; };
+		DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPrivateMapsKey.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				175D2B0716EAA87800FED984 /* GMViewController.m */,
 				175D2B0916EAA87800FED984 /* GMViewController.xib */,
 				175D2AF516EAA87800FED984 /* Supporting Files */,
+				DCCE515217549E6D00766B44 /* GMPrivateMapsKey.h */,
+				DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */,
 			);
 			path = GoogleMapsDragAndDrop;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				175D2AFB16EAA87800FED984 /* main.m in Sources */,
 				175D2AFF16EAA87800FED984 /* GMAppDelegate.m in Sources */,
 				175D2B0816EAA87800FED984 /* GMViewController.m in Sources */,
+				DCCE515417549E6D00766B44 /* GMPrivateMapsKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +372,7 @@
 				175D2B1016EAA87800FED984 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
