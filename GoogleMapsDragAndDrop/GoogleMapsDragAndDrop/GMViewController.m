@@ -20,7 +20,7 @@
 #define MARKER_TOUCH_DISTANCE 70.0f
 
 @interface GMViewController ()
-@property (strong, nonatomic, readwrite) id<GMSMarker> marker;
+@property (strong, nonatomic, readwrite) GMSMarker* marker;
 @property (strong, nonatomic, readwrite) UILongPressGestureRecognizer *longPressGesture;
 
 @property (assign, nonatomic, readwrite) CLLocationCoordinate2D initialMarkerPosition;
@@ -50,9 +50,9 @@
     
     for (CLLocation *location in array)
     {
-        GMSMarkerOptions *marker = [[GMSMarkerOptions alloc] init];
+        GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = location.coordinate;
-        [self.googleMapsView addMarkerWithOptions:marker];
+        marker.map = self.googleMapsView;
     }
     
     // Store the initial position of the sample marker.
@@ -189,17 +189,17 @@
 
 #pragma mark - Helper methods.
 // Determines the closest marker 
-- (id<GMSMarker>)determineClosestMarkerForTouchPoint:(CGPoint)touchPoint
+- (GMSMarker *)determineClosestMarkerForTouchPoint:(CGPoint)touchPoint
 {
     // Initialize the return value.
-    id<GMSMarker> resultMarker = nil;
+    GMSMarker *resultMarker = nil;
     
     // Initialize the initial distance as the maximum of CGFloat.
     CGFloat distance = CGFLOAT_MAX;
     CGFloat tempDistance = CGFLOAT_MAX;
     
     // Determine the closest marker to the current touch point
-    for (id<GMSMarker> marker in self.googleMapsView.markers)
+    for (GMSMarker *marker in self.googleMapsView.markers)
     {
         CGPoint markerPoint = [self.googleMapsView.projection pointForCoordinate:marker.position];
         CGFloat xDist = (touchPoint.x - markerPoint.x);
