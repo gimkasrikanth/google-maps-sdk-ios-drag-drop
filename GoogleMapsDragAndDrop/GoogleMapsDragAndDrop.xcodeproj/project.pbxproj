@@ -33,6 +33,7 @@
 		DCCE51561757CE0D00766B44 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCE51551757CE0D00766B44 /* GoogleMaps.framework */; };
 		DCCE51581757CE1800766B44 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51571757CE1800766B44 /* GoogleMaps.bundle */; };
 		DCCE515A1757CE6400766B44 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCE51591757CE6400766B44 /* libc++.dylib */; };
+		DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,9 @@
 		DCCE51551757CE0D00766B44 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		DCCE51571757CE1800766B44 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		DCCE51591757CE6400766B44 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManager.h; sourceTree = "<group>"; };
+		DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDraggableMarkerManager.m; sourceTree = "<group>"; };
+		DCCE515E1757D2E300766B44 /* GMDraggableMarkerManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManagerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,9 @@
 				175D2AF516EAA87800FED984 /* Supporting Files */,
 				DCCE515217549E6D00766B44 /* GMPrivateMapsKey.h */,
 				DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */,
+				DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */,
+				DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */,
+				DCCE515E1757D2E300766B44 /* GMDraggableMarkerManagerDelegate.h */,
 			);
 			path = GoogleMapsDragAndDrop;
 			sourceTree = "<group>";
@@ -240,6 +247,7 @@
 				175D2AFF16EAA87800FED984 /* GMAppDelegate.m in Sources */,
 				175D2B0816EAA87800FED984 /* GMViewController.m in Sources */,
 				DCCE515417549E6D00766B44 /* GMPrivateMapsKey.m in Sources */,
+				DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
