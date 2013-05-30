@@ -101,7 +101,6 @@
 		175D2AE216EAA87800FED984 = {
 			isa = PBXGroup;
 			children = (
-				DCCE51591757CE6400766B44 /* libc++.dylib */,
 				175D2AF416EAA87800FED984 /* GoogleMapsDragAndDrop */,
 				175D2AED16EAA87800FED984 /* Frameworks */,
 				175D2AEC16EAA87800FED984 /* Products */,
@@ -119,8 +118,6 @@
 		175D2AED16EAA87800FED984 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCCE51571757CE1800766B44 /* GoogleMaps.bundle */,
-				DCCE51551757CE0D00766B44 /* GoogleMaps.framework */,
 				175D2B1516EAA97100FED984 /* AVFoundation.framework */,
 				175D2B1716EAA97C00FED984 /* CoreData.framework */,
 				175D2AF216EAA87800FED984 /* CoreGraphics.framework */,
@@ -128,7 +125,10 @@
 				175D2B1B16EAA99400FED984 /* CoreText.framework */,
 				175D2AF016EAA87800FED984 /* Foundation.framework */,
 				175D2B1D16EAA99E00FED984 /* GLKit.framework */,
+				DCCE51571757CE1800766B44 /* GoogleMaps.bundle */,
+				DCCE51551757CE0D00766B44 /* GoogleMaps.framework */,
 				175D2B1F16EAA9AC00FED984 /* ImageIO.framework */,
+				DCCE51591757CE6400766B44 /* libc++.dylib */,
 				175D2B2116EAA9BF00FED984 /* libicucore.dylib */,
 				175D2B2316EAA9CA00FED984 /* libstdc++.dylib */,
 				175D2B2516EAA9D000FED984 /* libz.dylib */,
