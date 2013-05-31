@@ -12,7 +12,7 @@
 #define MARKER_DETECTION_BOX 40.0f
 
 // Determines the distance between touch point and position of the marker.
-#define MARKER_TOUCH_DISTANCE 70.0f
+#define MARKER_TOUCH_DISTANCE 60.0f
 
 #define MARKER_DROP_JUMP_DISTANCE 25.0f
 
@@ -20,7 +20,7 @@
 
 @property (nonatomic, weak) id<GMDraggableMarkerManagerDelegate> delegate;
 @property (nonatomic, weak) GMSMapView *mapView;
-@property (nonatomic, weak) GMSMarker *marker;
+@property (nonatomic, strong) GMSMarker *marker;
 @property (nonatomic, strong) UIImageView *markerImageView;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
 
@@ -34,7 +34,10 @@
 
 @end
 
-@implementation GMDraggableMarkerManager
+@implementation GMDraggableMarkerManager {
+    
+    CGRect _markerHitRect;
+}
 
 - (id) initWithMapView:(GMSMapView *)mapView delegate:(id<GMDraggableMarkerManagerDelegate>)delegate {
     
@@ -63,6 +66,9 @@
     {
         self.marker = [self determineClosestMarkerForTouchPoint:touchPoint];
         
+        self.markerImageView = [self imageViewForMarker:self.marker];
+        _markerHitRect = self.markerImageView.frame;
+        
         // Deselect the marker if it is not the selected one.
         if (self.mapView.selectedMarker != self.marker)
         {
@@ -76,16 +82,17 @@
         // The rect arround the current touch point. It is used to check wheter a point was long pressed.
         // Furthermore the rect allows you to controll if a user also dragged the marker.
         CGPoint markerPoint = [self.mapView.projection pointForCoordinate:self.marker.position];
-        CGRect markerVirtualBox = CGRectMake(markerPoint.x - (MARKER_DETECTION_BOX / 2.0f),
+        /*CGRect markerVirtualBox = CGRectMake(markerPoint.x - (MARKER_DETECTION_BOX / 2.0f),
                                              markerPoint.y - (MARKER_DETECTION_BOX / 2.0f),
                                              MARKER_DETECTION_BOX,
                                              MARKER_DETECTION_BOX);
-        
+        */
+         
         // In the UIGestureRecognizerStateBegan there must be a check if there was a long press on the marker.
         if (UIGestureRecognizerStateBegan == recognizer.state)
         {
             // Check if touch point is in the rect.
-            if (CGRectContainsPoint(markerVirtualBox, touchPoint))
+            if (CGRectContainsPoint(_markerHitRect, touchPoint))
             {
                 // Disable the gestures of the GoogleMaps view for UIX.
                 [self enableGoogleMapViewSettings:NO];
@@ -97,30 +104,26 @@
                 // Save the initial marker position.
                 self.initialMarkerPosition = self.marker.position;
                 
-                // Calculate the new marker point - for better display the marker is shown slightly above the touch point.
-                CGPoint newMarkerPoint = CGPointMake(markerPoint.x , markerPoint.y - MARKER_TOUCH_DISTANCE);
-                
-                self.markerImageView = [self imageViewForMarker:self.marker];
                 [self.mapView addSubview:self.markerImageView];
                 self.marker.map = nil;
                 
                 __block GMSMarker *myMarker = self.marker;
                 
                 CGRect newFrame = self.markerImageView.frame;
-                newFrame.origin.y -= MARKER_TOUCH_DISTANCE;
+                newFrame.origin.y -= (markerPoint.y - touchPoint.y) + MARKER_TOUCH_DISTANCE;
                 [UIView animateWithDuration:0.5 animations:^{
                     self.markerImageView.frame = newFrame;
                 } completion:^(BOOL finished) {
                     
                     // Calculate the coordinate of the marker point.
-                    CLLocationCoordinate2D coordinate = [self.mapView.projection coordinateForPoint:newMarkerPoint];
+                    //CLLocationCoordinate2D coordinate = [self.mapView.projection coordinateForPoint:newMarkerPoint];
                     
                     // Set the new coordinate to the marker.
-                    myMarker.position = coordinate;
-                    myMarker.map = self.mapView;
+                    //myMarker.position = coordinate;
+                    //myMarker.map = self.mapView;
                     
                     // remove the imageview
-                    [self.markerImageView removeFromSuperview];
+                    //[self.markerImageView removeFromSuperview];
                     
                     if ([self.delegate respondsToSelector:@selector(onMarkerDragStart:)])
                         [self.delegate onMarkerDragStart:myMarker];
@@ -139,19 +142,22 @@
             if (self.didTapMarker)
             {
                 // The user started to drag the marker, so there is no longer any intention to restore the old state.
-                if (!CGRectContainsPoint(markerVirtualBox, touchPoint) && NO == self.didDragMarker) {
+                if (!CGRectContainsPoint(self.markerImageView.frame, touchPoint) && NO == self.didDragMarker) {
                     // The marker was dragged.
                     self.didDragMarker = YES;
                 }
                 
                 // Calculate the new marker point - for better display the marker is shown slightly above the touch point.
-                CGPoint newMarkerPoint = CGPointMake(touchPoint.x , touchPoint.y - MARKER_TOUCH_DISTANCE);
+                //CGPoint newMarkerPoint = CGPointMake(touchPoint.x , touchPoint.y - MARKER_TOUCH_DISTANCE);
+                
+                CGSize imgSize = self.markerImageView.image.size;
+                self.markerImageView.frame = CGRectMake(touchPoint.x - (self.marker.groundAnchor.x * imgSize.width), touchPoint.y - (self.marker.groundAnchor.y * imgSize.height) - MARKER_TOUCH_DISTANCE, imgSize.width, imgSize.height);
                 
                 // Calculate the coordinate of the marker point.
-                CLLocationCoordinate2D coordinate = [self.mapView.projection coordinateForPoint:newMarkerPoint];
+                //CLLocationCoordinate2D coordinate = [self.mapView.projection coordinateForPoint:newMarkerPoint];
                 
                 // Set the new coordinate to the marker.
-                self.marker.position = coordinate;
+                //self.marker.position = coordinate;
                 
                 if ([self.delegate respondsToSelector:@selector(onMarkerDrag:)])
                     [self.delegate onMarkerDrag:self.marker];
@@ -166,23 +172,23 @@
                 self.marker.position = self.initialMarkerPosition;
             }
             
-            __block GMSMarker *myMarker = self.marker;
-            myMarker.map = nil;
-            
-            CGSize imgSize = self.markerImageView.image.size;
-            self.markerImageView.frame = CGRectMake(markerPoint.x - (self.marker.groundAnchor.x * imgSize.width), markerPoint.y - (self.marker.groundAnchor.y * imgSize.height), imgSize.width, imgSize.height);
-            [self.mapView addSubview:self.markerImageView];
+            __block GMSMarker *myMarker = self.marker;            
             
             __block CGRect newFrame = self.markerImageView.frame;
             newFrame.origin.y -= MARKER_DROP_JUMP_DISTANCE;
-            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.markerImageView.frame = newFrame;
             } completion:^(BOOL finished) {
                 
-                [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                     newFrame.origin.y += MARKER_DROP_JUMP_DISTANCE;
+                    self.markerImageView.frame = newFrame;
                 } completion:^(BOOL finished) {
                     
+                    CGSize imgSize = self.markerImageView.image.size;
+                    CGPoint newMarkerOrigin = CGPointMake(newFrame.origin.x + (self.marker.groundAnchor.x * imgSize.width), newFrame.origin.y + (self.marker.groundAnchor.y * imgSize.height));
+                    CLLocationCoordinate2D newMarkerCoordinate = [self.mapView.projection coordinateForPoint:newMarkerOrigin];
+                    myMarker.position = newMarkerCoordinate;
                     myMarker.map = self.mapView;
                     
                     // remove the imageview
