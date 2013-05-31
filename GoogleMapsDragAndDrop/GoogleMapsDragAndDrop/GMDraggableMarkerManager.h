@@ -21,5 +21,6 @@
 
 - (NSArray *) draggableMarkers;
 
+@property (nonatomic, readonly, weak) GMSMapView *mapView;
 
 @end

@@ -19,7 +19,6 @@
 @interface GMDraggableMarkerManager()
 
 @property (nonatomic, weak) id<GMDraggableMarkerManagerDelegate> delegate;
-@property (nonatomic, weak) GMSMapView *mapView;
 @property (nonatomic, strong) GMSMarker *marker;
 @property (nonatomic, strong) UIImageView *markerImageView;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
@@ -78,6 +77,24 @@
 - (NSArray *) draggableMarkers {
     
     return [self.markers allObjects];
+}
+
+#pragma mark - Public properties
+
+- (void) setMapView:(GMSMapView *)mapView {
+    
+    if (mapView != _mapView) {
+        // remove the current gesture recognizer
+        [_mapView removeGestureRecognizer:_longPressGesture];
+        
+        // different map view, so clear existing draggable markers
+        [self removeAllDraggableMarkers];
+        
+        _mapView = mapView;
+        
+        // Add the gesture recognizer to the new map view
+        [_mapView addGestureRecognizer:_longPressGesture];
+    }
 }
 
 #pragma mark - Gesture Reconizer.
