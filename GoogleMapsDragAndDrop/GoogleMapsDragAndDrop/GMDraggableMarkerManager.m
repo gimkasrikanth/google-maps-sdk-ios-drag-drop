@@ -28,6 +28,8 @@
 @property (assign, nonatomic, readwrite) BOOL didDragMarker;
 @property (assign, nonatomic, readwrite) BOOL didTapMarker;
 
+@property (nonatomic, strong) NSMutableSet *markers;
+
 - (GMSMarker *) determineClosestMarkerForTouchPoint:(CGPoint)touchPoint;
 - (void) reset;
 - (UIImageView *) imageViewForMarker:(GMSMarker *)marker;
@@ -50,9 +52,27 @@
         _longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
         _longPressGesture.minimumPressDuration = 0.4f;
         [_mapView addGestureRecognizer:_longPressGesture];
+        
+        _markers = [NSMutableSet setWithCapacity:5];
     }
     
     return self;
+}
+
+
+- (void) addDraggableMarker:(GMSMarker *)marker {
+    
+    [self.markers addObject:marker];
+}
+
+- (void) removeDraggableMarker:(GMSMarker *)marker {
+    
+    [self.markers removeObject:marker];
+}
+
+- (NSArray *) draggableMarkers {
+    
+    return [self.markers allObjects];
 }
 
 #pragma mark - Gesture Reconizer.
@@ -238,7 +258,7 @@
     CGFloat tempDistance = CGFLOAT_MAX;
     
     // Determine the closest marker to the current touch point
-    for (GMSMarker *marker in self.mapView.markers)
+    for (GMSMarker *marker in self.markers)
     {
         CGPoint markerPoint = [self.mapView.projection pointForCoordinate:marker.position];
         CGFloat xDist = (touchPoint.x - markerPoint.x);

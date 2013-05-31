@@ -34,6 +34,8 @@
                                                                     zoom:GOOGLE_MAPS_DEFAULT_ZOOM_LEVEL]];
     [self.googleMapsView setMapType:kGMSTypeNormal];
 
+    self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.googleMapsView delegate:self];
+    
     // Place sample marker to the map.
     NSArray *array = [[NSArray alloc] initWithObjects: [[CLLocation alloc] initWithLatitude:40.767720 longitude:-74.011674],
                              [[CLLocation alloc] initWithLatitude:40.766290 longitude:-73.953309],
@@ -46,17 +48,21 @@
         
         GMSMarker *marker = [GMSMarker markerWithPosition:location.coordinate];
         
-        if (3 == i)
+        if (3 == i) {
+            // alternative pin image (to test image code paths in GMDraggableMarkerManager
             marker.icon = [UIImage imageNamed:@"alternative-pin-red"];
-        else if (4 == i)
-            marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0.6 blue:0.4 alpha:1]];
+        } else if (4 == i) {
+            // non-draggable marker
+            marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithWhite:0.2 alpha:1.0]];
+        }
+        
+        if (4 != i)
+            [self.draggableMarkerManager addDraggableMarker:marker];
         
         i++;
         
         marker.map = self.googleMapsView;
     }
-    
-    self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.googleMapsView delegate:self];
     
 }
 
