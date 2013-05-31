@@ -70,6 +70,11 @@
     [self.markers removeObject:marker];
 }
 
+- (void) removeAllDraggableMarkers {
+ 
+    [self.markers removeAllObjects];
+}
+
 - (NSArray *) draggableMarkers {
     
     return [self.markers allObjects];

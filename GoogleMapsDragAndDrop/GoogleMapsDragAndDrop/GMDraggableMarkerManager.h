@@ -17,6 +17,9 @@
 
 - (void) addDraggableMarker:(GMSMarker *)marker;
 - (void) removeDraggableMarker:(GMSMarker *)marker;
+- (void) removeAllDraggableMarkers;
+
 - (NSArray *) draggableMarkers;
+
 
 @end
