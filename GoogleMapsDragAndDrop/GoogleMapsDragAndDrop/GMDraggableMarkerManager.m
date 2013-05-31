@@ -176,11 +176,11 @@
             
             __block CGRect newFrame = self.markerImageView.frame;
             newFrame.origin.y -= MARKER_DROP_JUMP_DISTANCE;
-            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.20 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.markerImageView.frame = newFrame;
             } completion:^(BOOL finished) {
                 
-                [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                [UIView animateWithDuration:0.10 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                     newFrame.origin.y += MARKER_DROP_JUMP_DISTANCE;
                     self.markerImageView.frame = newFrame;
                 } completion:^(BOOL finished) {

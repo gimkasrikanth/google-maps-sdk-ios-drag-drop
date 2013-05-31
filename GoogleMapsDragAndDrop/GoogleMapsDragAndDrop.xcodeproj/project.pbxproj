@@ -34,6 +34,8 @@
 		DCCE51581757CE1800766B44 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51571757CE1800766B44 /* GoogleMaps.bundle */; };
 		DCCE515A1757CE6400766B44 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCE51591757CE6400766B44 /* libc++.dylib */; };
 		DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */; };
+		DCCE51761759105A00766B44 /* alternative-pin-red.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51741759105A00766B44 /* alternative-pin-red.png */; };
+		DCCE51771759105A00766B44 /* alternative-pin-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51751759105A00766B44 /* alternative-pin-red@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,8 @@
 		DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManager.h; sourceTree = "<group>"; };
 		DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDraggableMarkerManager.m; sourceTree = "<group>"; };
 		DCCE515E1757D2E300766B44 /* GMDraggableMarkerManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManagerDelegate.h; sourceTree = "<group>"; };
+		DCCE51741759105A00766B44 /* alternative-pin-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alternative-pin-red.png"; sourceTree = "<group>"; };
+		DCCE51751759105A00766B44 /* alternative-pin-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alternative-pin-red@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,7 @@
 		175D2AF516EAA87800FED984 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DCCE51731759105A00766B44 /* images */,
 				175D2AF616EAA87800FED984 /* GoogleMapsDragAndDrop-Info.plist */,
 				175D2AF716EAA87800FED984 /* InfoPlist.strings */,
 				175D2AFA16EAA87800FED984 /* main.m */,
@@ -174,6 +179,15 @@
 				175D2B0416EAA87800FED984 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCCE51731759105A00766B44 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DCCE51741759105A00766B44 /* alternative-pin-red.png */,
+				DCCE51751759105A00766B44 /* alternative-pin-red@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +247,8 @@
 				175D2B0516EAA87800FED984 /* Default-568h@2x.png in Resources */,
 				175D2B0B16EAA87800FED984 /* GMViewController.xib in Resources */,
 				DCCE51581757CE1800766B44 /* GoogleMaps.bundle in Resources */,
+				DCCE51761759105A00766B44 /* alternative-pin-red.png in Resources */,
+				DCCE51771759105A00766B44 /* alternative-pin-red@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
