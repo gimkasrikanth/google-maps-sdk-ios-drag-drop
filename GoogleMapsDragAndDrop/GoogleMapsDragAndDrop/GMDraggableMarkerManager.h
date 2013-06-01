@@ -15,4 +15,12 @@
 
 - (id) initWithMapView:(GMSMapView *)mapView delegate:(id<GMDraggableMarkerManagerDelegate>)delegate;
 
+- (void) addDraggableMarker:(GMSMarker *)marker;
+- (void) removeDraggableMarker:(GMSMarker *)marker;
+- (void) removeAllDraggableMarkers;
+
+- (NSArray *) draggableMarkers;
+
+@property (nonatomic, readonly, weak) GMSMapView *mapView;
+
 @end
