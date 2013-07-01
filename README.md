@@ -28,4 +28,3 @@ robert.weindl@blackstack.net or stephen@crookneckconsulting.com
 
 If you're happy and want me to stay happy you are welcome to buy me a coffee…
 [![Donate](http://dribbble.s3.amazonaws.com/users/1390/screenshots/114752/shot_1297673467.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJJTQQQGG2CJQ)
-
