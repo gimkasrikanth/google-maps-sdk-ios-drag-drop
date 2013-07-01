@@ -34,7 +34,7 @@ A long press on the marker enables you to drag it around and set it to another p
 
 To receive callbacks when the marker was dragged, the dragging startet/ended or just when there was a long press on a coordinate you have to conform the `GMDraggableMarkerManagerDelegate` protocol.
 
-At the moment the following methods are available:
+At the moment the following optional methods available:
 
 1.	`- (void)mapView:(GMSMapView *)mapView didBeginDraggingMarker:(GMSMarker *)marker;`
 
