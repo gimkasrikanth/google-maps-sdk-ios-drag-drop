@@ -21,7 +21,7 @@ A long press on the marker enables you to drag it around and set it to another p
 
 ***
 
-If you have further questions or notes please feel free to contact:
+If you have further questions or notes please feel free to contact:<br/>
 robert.weindl@blackstack.net or stephen@crookneckconsulting.com
 
 ***
