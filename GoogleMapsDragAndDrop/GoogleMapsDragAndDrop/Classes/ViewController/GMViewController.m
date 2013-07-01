@@ -50,7 +50,7 @@
     {
         // Initialize the marker.
         GMSMarker *marker = [GMSMarker markerWithPosition:sampleMarkerLocation.coordinate];
-        
+
         switch (index)
         {
             // Demonstration of a non-draggable marker.
@@ -81,14 +81,14 @@
 }
 
 #pragma mark - GMDraggableMarkerManagerDelegate.
-- (void)mapView:(GMSMapView *)mapView didStartDraggingMarker:(GMSMarker *)marker
+- (void)mapView:(GMSMapView *)mapView didBeginDraggingMarker:(GMSMarker *)marker
 {
-    NSLog(@">>> mapView:didStartDraggingMarker: %@", [marker description]);
+    NSLog(@">>> mapView:didBeginDraggingMarker: %@", [marker description]);
 }
 
-- (void)mapView:(GMSMapView *)mapView didDraggingMarker:(GMSMarker *)marker
+- (void)mapView:(GMSMapView *)mapView didDragMarker:(GMSMarker *)marker
 {
-    NSLog(@">>> mapView:didDraggingMarker: %@", [marker description]);
+    NSLog(@">>> mapView:didDragMarker: %@", [marker description]);
 }
 
 - (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker

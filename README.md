@@ -19,6 +19,33 @@ NSString *kPrivateMapsAPIKey = @"";
 
 A long press on the marker enables you to drag it around and set it to another position.
 
+1. To initialize the drag & drop functionality you have to do import the `GMDraggableMarkerManager.h` in your UIViewController displaying the map:
+
+	```#import "GMDraggableMarkerManager.h"```
+2.	Create a property for the `GMDraggableMarkerManager`:
+
+	```@property (strong, nonatomic, readwrite) GMDraggableMarkerManager *draggableMarkerManager;```
+
+
+3. After the initialization of the Google Maps View you have to initialize the `draggableMarkerManager`:
+	    `self.draggableMarkerManager = [[GMDraggableMarkerManager alloc] initWithMapView:self.googleMapsView delegate:self];`
+
+***
+
+To receive callbacks when the marker was dragged, the dragging startet/ended or just when there was a long press on a coordinate you have to conform the `GMDraggableMarkerManagerDelegate` protocol.
+
+At the moment the following methods are available:
+
+1.	`- (void)mapView:(GMSMapView *)mapView didBeginDraggingMarker:(GMSMarker *)marker;`
+
+
+2.	`- (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker;`
+
+3.	`- (void)mapView:(GMSMapView *)mapView didDragMarker:(GMSMarker *)marker;`
+
+4.	`- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate;`
+
+
 ***
 
 If you have further questions or notes please feel free to contact:<br/>

@@ -13,12 +13,12 @@
 
 @optional
 /**
- *  Called after a marker startet has been long pressed and the dragging starts.
+ *  Called after a marker has been long pressed and the dragging started.
  *
  *  @param mapView The map view that was long pressed.
  *  @param marker The marker that was long pressed.
  */
-- (void)mapView:(GMSMapView *)mapView didStartDraggingMarker:(GMSMarker *)marker;
+- (void)mapView:(GMSMapView *)mapView didBeginDraggingMarker:(GMSMarker *)marker;
 
 /**
  *  Called after the dragging of a marker ended.
@@ -35,11 +35,11 @@
  *  @param mapView The map view where the marker gets dragged.
  *  @param marker The marker that gets dragged.
  */
-- (void)mapView:(GMSMapView *)mapView didDraggingMarker:(GMSMarker *)marker;
+- (void)mapView:(GMSMapView *)mapView didDragMarker:(GMSMarker *)marker;
 
 /**
  * Called after a long-press gesture at a particular coordinate.
- * This method has the same functionality than the method mapView:didStartDraggingMarker:.
+ * This method has the same functionality than the method mapView:didBeginDraggingMarker:.
  * The method is implemented to avoid conflicts with the GMSMapViewDelegate.
  *
  * @param mapView The map view that was pressed.

@@ -88,7 +88,7 @@
     if (UIGestureRecognizerStateBegan == recognizer.state)
     {
         // Call the mapView:didLongPressAtCoordinate: delegate method.
-        // This method has the same functionality than the method mapView:didStartDraggingMarker:.
+        // This method has the same functionality than the method mapView:didBeginDraggingMarker:.
         // The method is implemented to avoid conflicts with the GMSMapViewDelegate.
         if ([self.delegate respondsToSelector:@selector(mapView:didLongPressAtCoordinate:)])
         {
@@ -148,9 +148,9 @@
                                  completion:^(BOOL finished)
                                  {
                                     // Notify delegate of drag event at end of initial animation
-                                    if ([self.delegate respondsToSelector:@selector(mapView:didStartDraggingMarker:)])
+                                    if ([self.delegate respondsToSelector:@selector(mapView:didBeginDraggingMarker:)])
                                     {
-                                        [self.delegate mapView:self.mapView didStartDraggingMarker:self.marker];
+                                        [self.delegate mapView:self.mapView didBeginDraggingMarker:self.marker];
                                     }
                                  }];
 
@@ -185,9 +185,9 @@
                 if (YES == self.didDragMarker)
                 {
                     // Notify the delegate of a drag event.
-                    if ([self.delegate respondsToSelector:@selector(mapView:didDraggingMarker:)])
+                    if ([self.delegate respondsToSelector:@selector(mapView:didDragMarker:)])
                     {
-                        [self.delegate mapView:self.mapView didDraggingMarker:self.marker];
+                        [self.delegate mapView:self.mapView didDragMarker:self.marker];
                     }
                 }
             }
