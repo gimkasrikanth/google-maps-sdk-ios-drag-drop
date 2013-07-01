@@ -10,14 +10,9 @@
 		175D2AEF16EAA87800FED984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2AEE16EAA87800FED984 /* UIKit.framework */; };
 		175D2AF116EAA87800FED984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2AF016EAA87800FED984 /* Foundation.framework */; };
 		175D2AF316EAA87800FED984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2AF216EAA87800FED984 /* CoreGraphics.framework */; };
-		175D2AF916EAA87800FED984 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 175D2AF716EAA87800FED984 /* InfoPlist.strings */; };
 		175D2AFB16EAA87800FED984 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 175D2AFA16EAA87800FED984 /* main.m */; };
 		175D2AFF16EAA87800FED984 /* GMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 175D2AFE16EAA87800FED984 /* GMAppDelegate.m */; };
-		175D2B0116EAA87800FED984 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 175D2B0016EAA87800FED984 /* Default.png */; };
-		175D2B0316EAA87800FED984 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 175D2B0216EAA87800FED984 /* Default@2x.png */; };
-		175D2B0516EAA87800FED984 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 175D2B0416EAA87800FED984 /* Default-568h@2x.png */; };
 		175D2B0816EAA87800FED984 /* GMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175D2B0716EAA87800FED984 /* GMViewController.m */; };
-		175D2B0B16EAA87800FED984 /* GMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 175D2B0916EAA87800FED984 /* GMViewController.xib */; };
 		175D2B1616EAA97100FED984 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B1516EAA97100FED984 /* AVFoundation.framework */; };
 		175D2B1816EAA97C00FED984 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B1716EAA97C00FED984 /* CoreData.framework */; };
 		175D2B1A16EAA98900FED984 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B1916EAA98900FED984 /* CoreLocation.framework */; };
@@ -29,9 +24,13 @@
 		175D2B2816EAA9D800FED984 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2716EAA9D800FED984 /* OpenGLES.framework */; };
 		175D2B2A16EAA9DE00FED984 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2916EAA9DE00FED984 /* QuartzCore.framework */; };
 		175D2B2C16EAA9E400FED984 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */; };
-		DCCE515417549E6D00766B44 /* GMPrivateMapsKey.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */; };
-		DCCE51561757CE0D00766B44 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCE51551757CE0D00766B44 /* GoogleMaps.framework */; };
-		DCCE51581757CE1800766B44 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51571757CE1800766B44 /* GoogleMaps.bundle */; };
+		17B13F8A1781943000F5368D /* GMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F891781943000F5368D /* GMViewController.xib */; };
+		17B13F90178194D200F5368D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F8D178194D200F5368D /* Default-568h@2x.png */; };
+		17B13F91178194D200F5368D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F8E178194D200F5368D /* Default.png */; };
+		17B13F92178194D200F5368D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F8F178194D200F5368D /* Default@2x.png */; };
+		17B13F961781952600F5368D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F941781952600F5368D /* InfoPlist.strings */; };
+		17B13F981781A13300F5368D /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B13F971781A13300F5368D /* GoogleMaps.framework */; };
+		17B13F9A1781A14700F5368D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F991781A14700F5368D /* GoogleMaps.bundle */; };
 		DCCE515A1757CE6400766B44 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCE51591757CE6400766B44 /* libc++.dylib */; };
 		DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */; };
 		DCCE51761759105A00766B44 /* alternative-pin-red.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51741759105A00766B44 /* alternative-pin-red.png */; };
@@ -44,17 +43,12 @@
 		175D2AF016EAA87800FED984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		175D2AF216EAA87800FED984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		175D2AF616EAA87800FED984 /* GoogleMapsDragAndDrop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleMapsDragAndDrop-Info.plist"; sourceTree = "<group>"; };
-		175D2AF816EAA87800FED984 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		175D2AFA16EAA87800FED984 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		175D2AFC16EAA87800FED984 /* GoogleMapsDragAndDrop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoogleMapsDragAndDrop-Prefix.pch"; sourceTree = "<group>"; };
 		175D2AFD16EAA87800FED984 /* GMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMAppDelegate.h; sourceTree = "<group>"; };
 		175D2AFE16EAA87800FED984 /* GMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GMAppDelegate.m; sourceTree = "<group>"; };
-		175D2B0016EAA87800FED984 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		175D2B0216EAA87800FED984 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		175D2B0416EAA87800FED984 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		175D2B0616EAA87800FED984 /* GMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMViewController.h; sourceTree = "<group>"; };
 		175D2B0716EAA87800FED984 /* GMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GMViewController.m; sourceTree = "<group>"; };
-		175D2B0A16EAA87800FED984 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GMViewController.xib; sourceTree = "<group>"; };
 		175D2B1516EAA97100FED984 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		175D2B1716EAA97C00FED984 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		175D2B1916EAA98900FED984 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -62,15 +56,17 @@
 		175D2B1D16EAA99E00FED984 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		175D2B1F16EAA9AC00FED984 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		175D2B2116EAA9BF00FED984 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		175D2B2316EAA9CA00FED984 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		175D2B2516EAA9D000FED984 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		175D2B2716EAA9D800FED984 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		175D2B2916EAA9DE00FED984 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		DCCE515217549E6D00766B44 /* GMPrivateMapsKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrivateMapsKey.h; sourceTree = "<group>"; };
-		DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPrivateMapsKey.m; sourceTree = "<group>"; };
-		DCCE51551757CE0D00766B44 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		DCCE51571757CE1800766B44 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		17B13F891781943000F5368D /* GMViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMViewController.xib; sourceTree = "<group>"; };
+		17B13F8D178194D200F5368D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		17B13F8E178194D200F5368D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		17B13F8F178194D200F5368D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		17B13F951781952600F5368D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		17B13F971781A13300F5368D /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		17B13F991781A14700F5368D /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		DCCE51591757CE6400766B44 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManager.h; sourceTree = "<group>"; };
 		DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDraggableMarkerManager.m; sourceTree = "<group>"; };
@@ -84,12 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCCE515A1757CE6400766B44 /* libc++.dylib in Frameworks */,
-				175D2B2C16EAA9E400FED984 /* SystemConfiguration.framework in Frameworks */,
-				175D2B2A16EAA9DE00FED984 /* QuartzCore.framework in Frameworks */,
-				175D2B2816EAA9D800FED984 /* OpenGLES.framework in Frameworks */,
-				175D2B2616EAA9D000FED984 /* libz.dylib in Frameworks */,
-				175D2B2216EAA9BF00FED984 /* libicucore.dylib in Frameworks */,
 				175D2B1616EAA97100FED984 /* AVFoundation.framework in Frameworks */,
 				175D2B1816EAA97C00FED984 /* CoreData.framework in Frameworks */,
 				175D2AF316EAA87800FED984 /* CoreGraphics.framework in Frameworks */,
@@ -98,8 +88,14 @@
 				175D2AF116EAA87800FED984 /* Foundation.framework in Frameworks */,
 				175D2B1E16EAA99E00FED984 /* GLKit.framework in Frameworks */,
 				175D2B2016EAA9AC00FED984 /* ImageIO.framework in Frameworks */,
+				DCCE515A1757CE6400766B44 /* libc++.dylib in Frameworks */,
+				175D2B2216EAA9BF00FED984 /* libicucore.dylib in Frameworks */,
+				175D2B2616EAA9D000FED984 /* libz.dylib in Frameworks */,
+				175D2B2816EAA9D800FED984 /* OpenGLES.framework in Frameworks */,
+				175D2B2A16EAA9DE00FED984 /* QuartzCore.framework in Frameworks */,
+				175D2B2C16EAA9E400FED984 /* SystemConfiguration.framework in Frameworks */,
 				175D2AEF16EAA87800FED984 /* UIKit.framework in Frameworks */,
-				DCCE51561757CE0D00766B44 /* GoogleMaps.framework in Frameworks */,
+				17B13F981781A13300F5368D /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				175D2AF416EAA87800FED984 /* GoogleMapsDragAndDrop */,
+				DCCE51731759105A00766B44 /* Ressources */,
+				17B13F93178194F600F5368D /* Localization */,
+				175D2AF516EAA87800FED984 /* Supporting Files */,
 				175D2AED16EAA87800FED984 /* Frameworks */,
 				175D2AEC16EAA87800FED984 /* Products */,
 			);
@@ -126,24 +125,8 @@
 		175D2AED16EAA87800FED984 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				175D2B1516EAA97100FED984 /* AVFoundation.framework */,
-				175D2B1716EAA97C00FED984 /* CoreData.framework */,
-				175D2AF216EAA87800FED984 /* CoreGraphics.framework */,
-				175D2B1916EAA98900FED984 /* CoreLocation.framework */,
-				175D2B1B16EAA99400FED984 /* CoreText.framework */,
-				175D2AF016EAA87800FED984 /* Foundation.framework */,
-				175D2B1D16EAA99E00FED984 /* GLKit.framework */,
-				DCCE51571757CE1800766B44 /* GoogleMaps.bundle */,
-				DCCE51551757CE0D00766B44 /* GoogleMaps.framework */,
-				175D2B1F16EAA9AC00FED984 /* ImageIO.framework */,
-				DCCE51591757CE6400766B44 /* libc++.dylib */,
-				175D2B2116EAA9BF00FED984 /* libicucore.dylib */,
-				175D2B2316EAA9CA00FED984 /* libstdc++.dylib */,
-				175D2B2516EAA9D000FED984 /* libz.dylib */,
-				175D2B2716EAA9D800FED984 /* OpenGLES.framework */,
-				175D2B2916EAA9DE00FED984 /* QuartzCore.framework */,
-				175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */,
-				175D2AEE16EAA87800FED984 /* UIKit.framework */,
+				17B13F8517818A6100F5368D /* Apple */,
+				17B13F8617818A6700F5368D /* ThirdParty */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,41 +136,111 @@
 			children = (
 				175D2AFD16EAA87800FED984 /* GMAppDelegate.h */,
 				175D2AFE16EAA87800FED984 /* GMAppDelegate.m */,
-				175D2B0616EAA87800FED984 /* GMViewController.h */,
-				175D2B0716EAA87800FED984 /* GMViewController.m */,
-				175D2B0916EAA87800FED984 /* GMViewController.xib */,
-				175D2AF516EAA87800FED984 /* Supporting Files */,
-				DCCE515217549E6D00766B44 /* GMPrivateMapsKey.h */,
-				DCCE515317549E6D00766B44 /* GMPrivateMapsKey.m */,
-				DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */,
-				DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */,
-				DCCE515E1757D2E300766B44 /* GMDraggableMarkerManagerDelegate.h */,
+				17B13F881781938600F5368D /* ViewController */,
+				17B13F871781937600F5368D /* DraggableMarkerManager */,
 			);
-			path = GoogleMapsDragAndDrop;
+			name = GoogleMapsDragAndDrop;
+			path = GoogleMapsDragAndDrop/Classes;
 			sourceTree = "<group>";
 		};
 		175D2AF516EAA87800FED984 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DCCE51731759105A00766B44 /* images */,
-				175D2AF616EAA87800FED984 /* GoogleMapsDragAndDrop-Info.plist */,
-				175D2AF716EAA87800FED984 /* InfoPlist.strings */,
-				175D2AFA16EAA87800FED984 /* main.m */,
 				175D2AFC16EAA87800FED984 /* GoogleMapsDragAndDrop-Prefix.pch */,
-				175D2B0016EAA87800FED984 /* Default.png */,
-				175D2B0216EAA87800FED984 /* Default@2x.png */,
-				175D2B0416EAA87800FED984 /* Default-568h@2x.png */,
+				175D2AF616EAA87800FED984 /* GoogleMapsDragAndDrop-Info.plist */,
+				175D2AFA16EAA87800FED984 /* main.m */,
 			);
 			name = "Supporting Files";
+			path = GoogleMapsDragAndDrop/SupportingFiles;
 			sourceTree = "<group>";
 		};
-		DCCE51731759105A00766B44 /* images */ = {
+		17B13F8517818A6100F5368D /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				175D2B1516EAA97100FED984 /* AVFoundation.framework */,
+				175D2B1716EAA97C00FED984 /* CoreData.framework */,
+				175D2AF216EAA87800FED984 /* CoreGraphics.framework */,
+				175D2B1916EAA98900FED984 /* CoreLocation.framework */,
+				175D2B1B16EAA99400FED984 /* CoreText.framework */,
+				175D2AF016EAA87800FED984 /* Foundation.framework */,
+				175D2B1D16EAA99E00FED984 /* GLKit.framework */,
+				175D2B1F16EAA9AC00FED984 /* ImageIO.framework */,
+				DCCE51591757CE6400766B44 /* libc++.dylib */,
+				175D2B2116EAA9BF00FED984 /* libicucore.dylib */,
+				175D2B2516EAA9D000FED984 /* libz.dylib */,
+				175D2B2716EAA9D800FED984 /* OpenGLES.framework */,
+				175D2B2916EAA9DE00FED984 /* QuartzCore.framework */,
+				175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */,
+				175D2AEE16EAA87800FED984 /* UIKit.framework */,
+			);
+			name = Apple;
+			sourceTree = "<group>";
+		};
+		17B13F8617818A6700F5368D /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				17B13F991781A14700F5368D /* GoogleMaps.bundle */,
+				17B13F971781A13300F5368D /* GoogleMaps.framework */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		17B13F871781937600F5368D /* DraggableMarkerManager */ = {
+			isa = PBXGroup;
+			children = (
+				DCCE515E1757D2E300766B44 /* GMDraggableMarkerManagerDelegate.h */,
+				DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */,
+				DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */,
+			);
+			path = DraggableMarkerManager;
+			sourceTree = "<group>";
+		};
+		17B13F881781938600F5368D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				175D2B0616EAA87800FED984 /* GMViewController.h */,
+				175D2B0716EAA87800FED984 /* GMViewController.m */,
+				17B13F891781943000F5368D /* GMViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		17B13F8B1781947C00F5368D /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				17B13F8D178194D200F5368D /* Default-568h@2x.png */,
+				17B13F8E178194D200F5368D /* Default.png */,
+				17B13F8F178194D200F5368D /* Default@2x.png */,
+			);
+			path = Default;
+			sourceTree = "<group>";
+		};
+		17B13F8C1781948400F5368D /* Pins */ = {
 			isa = PBXGroup;
 			children = (
 				DCCE51741759105A00766B44 /* alternative-pin-red.png */,
 				DCCE51751759105A00766B44 /* alternative-pin-red@2x.png */,
 			);
-			path = images;
+			path = Pins;
+			sourceTree = "<group>";
+		};
+		17B13F93178194F600F5368D /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				17B13F941781952600F5368D /* InfoPlist.strings */,
+			);
+			name = Localization;
+			path = GoogleMapsDragAndDrop/Localization;
+			sourceTree = "<group>";
+		};
+		DCCE51731759105A00766B44 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				17B13F8B1781947C00F5368D /* Default */,
+				17B13F8C1781948400F5368D /* Pins */,
+			);
+			name = Ressources;
+			path = GoogleMapsDragAndDrop/Ressources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,14 +294,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175D2AF916EAA87800FED984 /* InfoPlist.strings in Resources */,
-				175D2B0116EAA87800FED984 /* Default.png in Resources */,
-				175D2B0316EAA87800FED984 /* Default@2x.png in Resources */,
-				175D2B0516EAA87800FED984 /* Default-568h@2x.png in Resources */,
-				175D2B0B16EAA87800FED984 /* GMViewController.xib in Resources */,
-				DCCE51581757CE1800766B44 /* GoogleMaps.bundle in Resources */,
 				DCCE51761759105A00766B44 /* alternative-pin-red.png in Resources */,
 				DCCE51771759105A00766B44 /* alternative-pin-red@2x.png in Resources */,
+				17B13F90178194D200F5368D /* Default-568h@2x.png in Resources */,
+				17B13F91178194D200F5368D /* Default.png in Resources */,
+				17B13F92178194D200F5368D /* Default@2x.png in Resources */,
+				17B13F8A1781943000F5368D /* GMViewController.xib in Resources */,
+				17B13F961781952600F5368D /* InfoPlist.strings in Resources */,
+				17B13F9A1781A14700F5368D /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,31 +312,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175D2AFB16EAA87800FED984 /* main.m in Sources */,
 				175D2AFF16EAA87800FED984 /* GMAppDelegate.m in Sources */,
-				175D2B0816EAA87800FED984 /* GMViewController.m in Sources */,
-				DCCE515417549E6D00766B44 /* GMPrivateMapsKey.m in Sources */,
 				DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */,
+				175D2B0816EAA87800FED984 /* GMViewController.m in Sources */,
+				175D2AFB16EAA87800FED984 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		175D2AF716EAA87800FED984 /* InfoPlist.strings */ = {
+		17B13F941781952600F5368D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				175D2AF816EAA87800FED984 /* en */,
+				17B13F951781952600F5368D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		175D2B0916EAA87800FED984 /* GMViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				175D2B0A16EAA87800FED984 /* en */,
-			);
-			name = GMViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -357,8 +401,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GoogleMapsDragAndDrop/GoogleMapsDragAndDrop-Prefix.pch";
-				INFOPLIST_FILE = "GoogleMapsDragAndDrop/GoogleMapsDragAndDrop-Info.plist";
+				GCC_PREFIX_HEADER = "GoogleMapsDragAndDrop/SupportingFiles/GoogleMapsDragAndDrop-Prefix.pch";
+				INFOPLIST_FILE = "GoogleMapsDragAndDrop/SupportingFiles/GoogleMapsDragAndDrop-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -372,8 +416,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GoogleMapsDragAndDrop/GoogleMapsDragAndDrop-Prefix.pch";
-				INFOPLIST_FILE = "GoogleMapsDragAndDrop/GoogleMapsDragAndDrop-Info.plist";
+				GCC_PREFIX_HEADER = "GoogleMapsDragAndDrop/SupportingFiles/GoogleMapsDragAndDrop-Prefix.pch";
+				INFOPLIST_FILE = "GoogleMapsDragAndDrop/SupportingFiles/GoogleMapsDragAndDrop-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
