@@ -7,6 +7,7 @@
 //
 
 #import "GMDraggableMarkerManager.h"
+#import <QuartzCore/CALayer.h>
 
 // Determines the distance between touch point and position of the marker.
 #define MARKER_TOUCH_DISTANCE 60.0f
@@ -45,6 +46,10 @@
         
         // Initialize the markers set.
         self.markers = [[NSMutableSet alloc] init];
+        
+        // Initialize the marker UIImageView.
+        self.markerImageView = [[UIImageView alloc] init];
+        [self.mapView addSubview:self.markerImageView];
         
         // Remove the GMSBlockingGestureRecognizer
         [self removeGMSBlockingGestureRecognizer];
@@ -98,8 +103,8 @@
         // Determine the closest marker.
         self.marker = [self determineClosestMarkerForTouchPoint:touchPoint];
         
-        // Create the UIImageView for the marker.
-        self.markerImageView = [self imageViewForMarker:self.marker];
+        // Load the UIImageView for the marker.
+        [self loadImageViewForMarker:self.marker];
         
         // Rect used to determine if user actually touched the closest marker.
         self.markerHitRect = self.markerImageView.frame;
@@ -115,7 +120,10 @@
         {
             // Check if touch point is in the rect.
             if (CGRectContainsPoint(self.markerHitRect, touchPoint))
-            {                
+            {
+                // Display the marker's UIImageView.
+                [self.markerImageView.layer setOpacity:1.0f];
+                
                 // Deselect the current on the map view selected marker if it is not the long pressed one.
                 if (self.mapView.selectedMarker != self.marker)
                 {
@@ -130,10 +138,7 @@
                 
                 // Save the initial marker position.
                 self.initialMarkerPosition = self.marker.position;
-                
-                // Add the marker image view to the mapView.
-                [self.mapView addSubview:self.markerImageView];
-                
+                                
                 // Remove the marker of the mapView.
                 self.marker.map = nil;
                 
@@ -232,21 +237,76 @@
                                                       newFrame.origin.y += MARKER_DROP_JUMP_DISTANCE;
                                                       self.markerImageView.frame = newFrame;
                                                   }
-                                                  completion:^(BOOL finished) {
-                                                      
-                                                      // Finally, update the position of the marker we are dragging.
-                                                      self.marker.position = markerPosition;
-                                                      
-                                                      // And add it back on the map.
-                                                      self.marker.map = self.mapView;
-                                                      
-                                                      // Notify delegate before we reset.
-                                                      if ([self.delegate respondsToSelector:@selector(mapView:didEndDraggingMarker:)])
+                                                  completion:^(BOOL finished)
+                                                  {           
+                                                      if (NO == self.didDragMarker)
                                                       {
-                                                          [self.delegate mapView:self.mapView didEndDraggingMarker:self.marker];
-                                                      }
-                                                      // Reset the draggable marker manager.
-                                                      [self resetDraggableMarkerManager];
+                                                          // Marker was not dragged so animate it back to its inital position.
+                                                          [UIView animateWithDuration:0.05
+                                                                                delay:0
+                                                                              options:UIViewAnimationOptionCurveLinear
+                                                                           animations:^(void)
+                                                                           {
+                                                                               newFrame = self.markerHitRect;
+                                                                               self.markerImageView.frame = newFrame;
+                                                                           }
+                                                                           completion:^(BOOL finished)
+                                                                           {
+                                                                               // Finally, update the position of the marker we are dragging.
+                                                                               self.marker.position = markerPosition;
+                                                               
+                                                                               // And add it back on the map.
+                                                                               self.marker.map = self.mapView;
+                                                                               
+                                                                               // Fade out the markerImageView to avoid blinking of the marker.
+                                                                               [UIView animateWithDuration:0.10
+                                                                                                     delay:0
+                                                                                                   options:UIViewAnimationOptionCurveLinear                                                                                animations:^(void)
+                                                                                                {
+                                                                                                    [self.markerImageView.layer setOpacity:0.0f];
+                                                                                    
+                                                                                                }
+                                                                                                completion:^(BOOL finished)
+                                                                                                {
+                                                                                    
+                                                                                                    // Notify delegate before we reset.
+                                                                                                    if ([self.delegate respondsToSelector:@selector(mapView:didEndDraggingMarker:)])
+                                                                                                    {
+                                                                                                        [self.delegate mapView:self.mapView didEndDraggingMarker:self.marker];
+                                                                                                    }
+                                                                                                    // Reset the draggable marker manager.
+                                                                                                    [self resetDraggableMarkerManager];
+                                                                                }];
+                                                                           }];
+                                                       }
+                                                       else
+                                                       {
+                                                           // Finally, update the position of the marker we are dragging.
+                                                           self.marker.position = markerPosition;
+                                                           
+                                                           // And add it back on the map.
+                                                           self.marker.map = self.mapView;
+                                                           
+                                                           // Fade out the markerImageView to avoid blinking of the marker.
+                                                           [UIView animateWithDuration:0.10
+                                                                                 delay:0
+                                                                               options:UIViewAnimationOptionCurveEaseIn
+                                                                            animations:^(void){
+                                                                                [self.markerImageView.layer setOpacity:0.0f];
+                                                                                
+                                                                            }
+                                                                            completion:^(BOOL finished)
+                                                                            {
+                                                                                // Notify delegate before we reset.
+                                                                                if ([self.delegate respondsToSelector:@selector(mapView:didEndDraggingMarker:)])
+                                                                                {
+                                                                                    [self.delegate mapView:self.mapView didEndDraggingMarker:self.marker];
+                                                                                }
+                                                                                // Reset the draggable marker manager.
+                                                                                [self resetDraggableMarkerManager];
+                                                                            }];
+
+                                                       }
                                                   }];
                              }];                        
         }
@@ -315,13 +375,6 @@
 // Reset the draggable marker manager.
 - (void)resetDraggableMarkerManager
 {
-    // Remove the for animation used marker UIImageView.
-    if (nil != self.markerImageView)
-    {
-        [self.markerImageView removeFromSuperview];
-        self.markerImageView = nil;
-    }
-    
     // Reset the control properties.
     self.didTapMarker = NO;
     self.didDragMarker = NO;
@@ -349,29 +402,31 @@
 }
 
 // Generate an UIImageView for the marker used for animation.
-- (UIImageView *)imageViewForMarker:(GMSMarker *)marker
+- (void)loadImageViewForMarker:(GMSMarker *)marker
 {
-    // Receive the point in the view for the marker.
-    CGPoint markerPoint = [self.mapView.projection pointForCoordinate:marker.position];
-    
-    // Get the current marker image or use the default marker image supplied in the Google Maps bundle.
-    UIImage *currentMarkerImage;
-    if (nil != self.marker.icon)
+    if (nil != marker)
     {
-        currentMarkerImage = self.marker.icon;
-    }
-    else
-    {
-        currentMarkerImage = [UIImage imageNamed:@"GoogleMaps.bundle/default_marker"];
-    }
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:currentMarkerImage];
-    imageView.frame = CGRectMake(markerPoint.x - (self.marker.groundAnchor.x * currentMarkerImage.size.width),
-                                 markerPoint.y - (self.marker.groundAnchor.y * currentMarkerImage.size.height),
-                                 currentMarkerImage.size.width,
-                                 currentMarkerImage.size.height);
+        // Get the current marker image or use the default marker image supplied in the Google Maps bundle.
+        UIImage *currentMarkerImage;
+        if (nil != self.marker.icon)
+        {
+            currentMarkerImage = self.marker.icon;
+        }
+        else
+        {
+            currentMarkerImage = [UIImage imageNamed:@"GoogleMaps.bundle/default_marker"];
+        }
+        
+        // Receive the point in the view for the marker.
+        CGPoint markerPoint = [self.mapView.projection pointForCoordinate:marker.position];
+        
+        [self.markerImageView setImage:currentMarkerImage];
+        [self.markerImageView setFrame: CGRectMake(markerPoint.x - (self.marker.groundAnchor.x * currentMarkerImage.size.width),
+                                                   markerPoint.y - (self.marker.groundAnchor.y * currentMarkerImage.size.height),
+                                                   currentMarkerImage.size.width,
+                                                   currentMarkerImage.size.height)];
 
-    return imageView;
+    }
 }
 
 @end
