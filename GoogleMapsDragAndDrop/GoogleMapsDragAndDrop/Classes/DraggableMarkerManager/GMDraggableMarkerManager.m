@@ -34,6 +34,20 @@
 
 @implementation GMDraggableMarkerManager
 
+#pragma mark - Private Class methods
+
+// Remove the GMSBlockingGestureRecognizer of the GMSMapView.
++ (void)removeGMSBlockingGestureRecognizerFromMapView:(GMSMapView *)mapView
+{
+    for (id gestureRecognizer in mapView.gestureRecognizers)
+    {
+        if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
+        {
+            [mapView removeGestureRecognizer:gestureRecognizer];
+        }
+    }
+}
+
 #pragma mark - Lifecycle.
 - (id)initWithMapView:(GMSMapView *)mapView delegate:(id<GMDraggableMarkerManagerDelegate>)delegate
 {
@@ -41,23 +55,23 @@
     if (nil != self)
     {
         // Initialization of the map and delegates.
-        self.delegate = delegate;
-        self.mapView = mapView;
+        _delegate = delegate;
+        _mapView = mapView;
         
         // Initialize the markers set.
-        self.markers = [[NSMutableSet alloc] init];
+        _markers = [[NSMutableSet alloc] init];
         
         // Initialize the marker UIImageView.
-        self.markerImageView = [[UIImageView alloc] init];
-        [self.mapView addSubview:self.markerImageView];
+        _markerImageView = [[UIImageView alloc] init];
+        [_mapView addSubview:_markerImageView];
         
         // Remove the GMSBlockingGestureRecognizer
-        [self removeGMSBlockingGestureRecognizer];
+        [GMDraggableMarkerManager removeGMSBlockingGestureRecognizerFromMapView:_mapView];
         
         // Add a custom long press gesture recognizer to the map.
-        self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-        self.longPressGestureRecognizer.minimumPressDuration = 0.4f;
-        [self.mapView addGestureRecognizer:self.longPressGestureRecognizer];    
+        _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+        _longPressGestureRecognizer.minimumPressDuration = 0.4f;
+        [_mapView addGestureRecognizer:_longPressGestureRecognizer];
     }
     return self;
 }
@@ -386,19 +400,7 @@
     self.marker = nil;
 
     // Remove the GMSBlockingGestureRecognizer.
-    [self removeGMSBlockingGestureRecognizer];
-}
-
-// Remove the GMSBlockingGestureRecognizer of the GMSMapView.
-- (void)removeGMSBlockingGestureRecognizer
-{
-    for (id gestureRecognizer in self.mapView.gestureRecognizers)
-    {
-        if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
-        {
-            [self.mapView removeGestureRecognizer:gestureRecognizer];
-        }
-    }
+    [GMDraggableMarkerManager removeGMSBlockingGestureRecognizerFromMapView:self.mapView];
 }
 
 // Generate an UIImageView for the marker used for animation.
