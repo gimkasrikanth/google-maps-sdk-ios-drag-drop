@@ -284,9 +284,9 @@
                                                                                                 {
                                                                                     
                                                                                                     // Notify delegate before we reset.
-                                                                                                    if ([self.delegate respondsToSelector:@selector(mapView:didEndDraggingMarker:)])
+                                                                                                    if ([self.delegate respondsToSelector:@selector(mapView:didCancelDraggingMarker:)])
                                                                                                     {
-                                                                                                        [self.delegate mapView:self.mapView didEndDraggingMarker:self.marker];
+                                                                                                        [self.delegate mapView:self.mapView didCancelDraggingMarker:self.marker];
                                                                                                     }
                                                                                                     // Reset the draggable marker manager.
                                                                                                     [self resetDraggableMarkerManager];
