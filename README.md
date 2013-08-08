@@ -4,10 +4,11 @@ A way to implement the drag &amp; drop functionality in the new Google Maps SDK 
 ***
 Please note:
 =============================
-Before you compile the project you have to add your own Google Maps API key in the `GMAppDelegate`.
-
+Before you can compile the project you have to create a new file called ```GMPrivateMapsKey.m``` and add it to the project. This file has to contain your API Key for the Google Maps SDK.
 ```
-NSString *kPrivateMapsAPIKey = @"";
+#import "GMPrivateMapsKey.h"
+
+NSString *const kPrivateMapsAPIKey = @"<YOUR API KEY>";
 ```
   The way to receive a key is descriped at: https://developers.google.com/maps/documentation/ios/start
 

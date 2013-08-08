@@ -24,14 +24,13 @@
 		175D2B2816EAA9D800FED984 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2716EAA9D800FED984 /* OpenGLES.framework */; };
 		175D2B2A16EAA9DE00FED984 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2916EAA9DE00FED984 /* QuartzCore.framework */; };
 		175D2B2C16EAA9E400FED984 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */; };
+		17A95F8617B3CB2700F1B4E0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A95F8517B3CB2700F1B4E0 /* GoogleMaps.framework */; };
+		17A95F8817B3CB3000F1B4E0 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A95F8717B3CB3000F1B4E0 /* GoogleMaps.bundle */; };
 		17B13F8A1781943000F5368D /* GMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F891781943000F5368D /* GMViewController.xib */; };
 		17B13F90178194D200F5368D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F8D178194D200F5368D /* Default-568h@2x.png */; };
 		17B13F91178194D200F5368D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F8E178194D200F5368D /* Default.png */; };
 		17B13F92178194D200F5368D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F8F178194D200F5368D /* Default@2x.png */; };
 		17B13F961781952600F5368D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F941781952600F5368D /* InfoPlist.strings */; };
-		17B13F981781A13300F5368D /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B13F971781A13300F5368D /* GoogleMaps.framework */; };
-		17B13F9A1781A14700F5368D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17B13F991781A14700F5368D /* GoogleMaps.bundle */; };
-		DC29920A1783771A00E92C7D /* GMPrivateMapsKey.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2992081783771A00E92C7D /* GMPrivateMapsKey.m */; };
 		DCCE515A1757CE6400766B44 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCE51591757CE6400766B44 /* libc++.dylib */; };
 		DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE515C1757D2D000766B44 /* GMDraggableMarkerManager.m */; };
 		DCCE51761759105A00766B44 /* alternative-pin-red.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCE51741759105A00766B44 /* alternative-pin-red.png */; };
@@ -61,14 +60,13 @@
 		175D2B2716EAA9D800FED984 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		175D2B2916EAA9DE00FED984 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		175D2B2B16EAA9E400FED984 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		17A95F8517B3CB2700F1B4E0 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		17A95F8717B3CB3000F1B4E0 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		17B13F891781943000F5368D /* GMViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMViewController.xib; sourceTree = "<group>"; };
 		17B13F8D178194D200F5368D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		17B13F8E178194D200F5368D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17B13F8F178194D200F5368D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		17B13F951781952600F5368D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		17B13F971781A13300F5368D /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		17B13F991781A14700F5368D /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		DC2992081783771A00E92C7D /* GMPrivateMapsKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPrivateMapsKey.m; sourceTree = "<group>"; };
 		DC2992091783771A00E92C7D /* GMPrivateMapsKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPrivateMapsKey.h; sourceTree = "<group>"; };
 		DCCE51591757CE6400766B44 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		DCCE515B1757D2D000766B44 /* GMDraggableMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDraggableMarkerManager.h; sourceTree = "<group>"; };
@@ -98,7 +96,7 @@
 				175D2B2A16EAA9DE00FED984 /* QuartzCore.framework in Frameworks */,
 				175D2B2C16EAA9E400FED984 /* SystemConfiguration.framework in Frameworks */,
 				175D2AEF16EAA87800FED984 /* UIKit.framework in Frameworks */,
-				17B13F981781A13300F5368D /* GoogleMaps.framework in Frameworks */,
+				17A95F8617B3CB2700F1B4E0 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,11 +135,10 @@
 		175D2AF416EAA87800FED984 /* GoogleMapsDragAndDrop */ = {
 			isa = PBXGroup;
 			children = (
-				17B13F871781937600F5368D /* DraggableMarkerManager */,
 				175D2AFD16EAA87800FED984 /* GMAppDelegate.h */,
 				175D2AFE16EAA87800FED984 /* GMAppDelegate.m */,
 				DC2992091783771A00E92C7D /* GMPrivateMapsKey.h */,
-				DC2992081783771A00E92C7D /* GMPrivateMapsKey.m */,
+				17B13F871781937600F5368D /* DraggableMarkerManager */,
 				17B13F881781938600F5368D /* ViewController */,
 			);
 			name = GoogleMapsDragAndDrop;
@@ -184,8 +181,8 @@
 		17B13F8617818A6700F5368D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				17B13F991781A14700F5368D /* GoogleMaps.bundle */,
-				17B13F971781A13300F5368D /* GoogleMaps.framework */,
+				17A95F8717B3CB3000F1B4E0 /* GoogleMaps.bundle */,
+				17A95F8517B3CB2700F1B4E0 /* GoogleMaps.framework */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -306,7 +303,7 @@
 				17B13F92178194D200F5368D /* Default@2x.png in Resources */,
 				17B13F8A1781943000F5368D /* GMViewController.xib in Resources */,
 				17B13F961781952600F5368D /* InfoPlist.strings in Resources */,
-				17B13F9A1781A14700F5368D /* GoogleMaps.bundle in Resources */,
+				17A95F8817B3CB3000F1B4E0 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +318,6 @@
 				DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */,
 				175D2B0816EAA87800FED984 /* GMViewController.m in Sources */,
 				175D2AFB16EAA87800FED984 /* main.m in Sources */,
-				DC29920A1783771A00E92C7D /* GMPrivateMapsKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
