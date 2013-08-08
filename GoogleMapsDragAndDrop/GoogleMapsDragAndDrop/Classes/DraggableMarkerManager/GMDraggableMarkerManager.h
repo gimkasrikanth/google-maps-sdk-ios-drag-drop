@@ -43,4 +43,25 @@
  */
 - (NSArray *)draggableMarkers;
 
+/**
+    Property to control duration of the marker 'jump up' animation
+ */
+@property (nonatomic) NSTimeInterval markerAnimateUpDuration;
+
+/**
+    Property to control duration of the marker 'drop' animation
+ */
+@property (nonatomic) NSTimeInterval markerAnimateDownDuration;
+
+
+/**
+    Property to control distance that marker jumps up at start of drag
+ */
+@property (nonatomic) CGFloat markerAnimateUpDistance;
+
+/**
+ Property to control distance that marker jumps and then drops at end of drag
+ */
+@property (nonatomic) CGFloat markerAnimateDownDistance;
+
 @end

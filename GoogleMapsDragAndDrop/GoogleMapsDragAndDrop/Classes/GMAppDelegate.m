@@ -6,10 +6,13 @@
 //
 //
 
+#import <GoogleMaps/GoogleMaps.h>
+
 #import "GMAppDelegate.h"
 
+#import "GMPrivateMapsKey.h"
 #import "GMViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
+
 
 @interface GMAppDelegate ()
 
@@ -22,7 +25,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialization of the GoogleMaps SDK.
-    NSString *kPrivateMapsAPIKey = @"";
     [GMSServices provideAPIKey:kPrivateMapsAPIKey];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

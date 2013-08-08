@@ -96,4 +96,9 @@
     NSLog(@">>> mapView:didEndDraggingMarker: %@", [marker description]);
 }
 
+- (void)mapView:(GMSMapView *)mapView didCancelDraggingMarker:(GMSMarker *)marker
+{
+    NSLog(@">>> mapView:didCancelDraggingMarker: %@", [marker description]);
+}
+
 @end

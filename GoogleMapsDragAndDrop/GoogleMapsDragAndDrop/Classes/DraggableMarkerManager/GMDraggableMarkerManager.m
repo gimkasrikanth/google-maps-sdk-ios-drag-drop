@@ -9,11 +9,17 @@
 #import "GMDraggableMarkerManager.h"
 #import <QuartzCore/CALayer.h>
 
-// Determines the distance between touch point and position of the marker.
-#define MARKER_TOUCH_DISTANCE 60.0f
+// Default distance between touch point and position of the marker.
+#define MARKER_ANIMATE_UP_DISTANCE 60.0f
 
-// Determines distance the marker jumps at the end of the drag gesture.
-#define MARKER_DROP_JUMP_DISTANCE 25.0f
+// Default distance the marker jumps at the end of the drag gesture.
+#define MARKER_ANIMATE_DOWN_DISTANCE 25.0f
+
+// Default duration of marker jump up animation at start of the drag gesture.
+#define MARKER_ANIMATE_UP_DEFAULT_DURATION 0.2
+
+// Default total duration of marker jump animation at end of the drag gesture.
+#define MARKER_ANIMATE_DOWN_DEFAULT_DUATION 0.2
 
 @interface GMDraggableMarkerManager()
 
@@ -34,6 +40,20 @@
 
 @implementation GMDraggableMarkerManager
 
+#pragma mark - Private Class methods
+
+// Remove the GMSBlockingGestureRecognizer of the GMSMapView.
++ (void)removeGMSBlockingGestureRecognizerFromMapView:(GMSMapView *)mapView
+{
+    for (id gestureRecognizer in mapView.gestureRecognizers)
+    {
+        if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
+        {
+            [mapView removeGestureRecognizer:gestureRecognizer];
+        }
+    }
+}
+
 #pragma mark - Lifecycle.
 - (id)initWithMapView:(GMSMapView *)mapView delegate:(id<GMDraggableMarkerManagerDelegate>)delegate
 {
@@ -41,23 +61,29 @@
     if (nil != self)
     {
         // Initialization of the map and delegates.
-        self.delegate = delegate;
-        self.mapView = mapView;
+        _delegate = delegate;
+        _mapView = mapView;
         
         // Initialize the markers set.
-        self.markers = [[NSMutableSet alloc] init];
+        _markers = [[NSMutableSet alloc] init];
         
         // Initialize the marker UIImageView.
-        self.markerImageView = [[UIImageView alloc] init];
-        [self.mapView addSubview:self.markerImageView];
+        _markerImageView = [[UIImageView alloc] init];
+        [_mapView addSubview:_markerImageView];
+        
+        // Initialize marker animation properties
+        _markerAnimateUpDuration = MARKER_ANIMATE_UP_DEFAULT_DURATION;
+        _markerAnimateDownDuration = MARKER_ANIMATE_DOWN_DEFAULT_DUATION;
+        _markerAnimateUpDistance = MARKER_ANIMATE_UP_DISTANCE;
+        _markerAnimateDownDistance = MARKER_ANIMATE_DOWN_DISTANCE;
         
         // Remove the GMSBlockingGestureRecognizer
-        [self removeGMSBlockingGestureRecognizer];
+        [GMDraggableMarkerManager removeGMSBlockingGestureRecognizerFromMapView:_mapView];
         
         // Add a custom long press gesture recognizer to the map.
-        self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-        self.longPressGestureRecognizer.minimumPressDuration = 0.4f;
-        [self.mapView addGestureRecognizer:self.longPressGestureRecognizer];    
+        _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+        _longPressGestureRecognizer.minimumPressDuration = 0.4f;
+        [_mapView addGestureRecognizer:_longPressGestureRecognizer];
     }
     return self;
 }
@@ -144,8 +170,8 @@
                 
                 // Animate the marker.
                 CGRect newFrame = self.markerImageView.frame;
-                newFrame.origin.y -= (markerPoint.y - touchPoint.y) + MARKER_TOUCH_DISTANCE;
-                [UIView animateWithDuration:0.2
+                newFrame.origin.y -= (markerPoint.y - touchPoint.y) + self.markerAnimateUpDistance;
+                [UIView animateWithDuration:self.markerAnimateUpDuration
                                  animations:^(void)
                                  {
                                      self.markerImageView.frame = newFrame;
@@ -182,7 +208,7 @@
                 // Move the image view to the correct position for the updated touch point.
                 CGSize imageSize = self.markerImageView.image.size;
                 self.markerImageView.frame = CGRectMake(touchPoint.x - (self.marker.groundAnchor.x * imageSize.width),
-                                                        touchPoint.y - (self.marker.groundAnchor.y * imageSize.height) - MARKER_TOUCH_DISTANCE,
+                                                        touchPoint.y - (self.marker.groundAnchor.y * imageSize.height) - self.markerAnimateUpDistance,
                                                         imageSize.width,
                                                         imageSize.height);
                                 
@@ -218,8 +244,8 @@
             }
             
             // Animate the marker to jump up.
-            newFrame.origin.y -= MARKER_DROP_JUMP_DISTANCE;
-            [UIView animateWithDuration:0.10
+            newFrame.origin.y -= self.markerAnimateDownDistance;
+            [UIView animateWithDuration:(self.markerAnimateDownDuration/2.0)
                                   delay:0
                                 options:UIViewAnimationOptionCurveEaseIn
                              animations:^(void)
@@ -229,12 +255,12 @@
                              completion:^(BOOL finished)
                              {
                                  // Animate the marker to land again.
-                                 [UIView animateWithDuration:0.10
+                                 [UIView animateWithDuration:(self.markerAnimateDownDuration/2.0)
                                                        delay:0
                                                      options:UIViewAnimationOptionCurveEaseIn
                                                   animations:^(void)
                                                   {
-                                                      newFrame.origin.y += MARKER_DROP_JUMP_DISTANCE;
+                                                      newFrame.origin.y += self.markerAnimateDownDistance;
                                                       self.markerImageView.frame = newFrame;
                                                   }
                                                   completion:^(BOOL finished)
@@ -242,7 +268,7 @@
                                                       if (NO == self.didDragMarker)
                                                       {
                                                           // Marker was not dragged so animate it back to its inital position.
-                                                          [UIView animateWithDuration:0.05
+                                                          [UIView animateWithDuration:self.markerAnimateDownDuration
                                                                                 delay:0
                                                                               options:UIViewAnimationOptionCurveLinear
                                                                            animations:^(void)
@@ -270,9 +296,9 @@
                                                                                                 {
                                                                                     
                                                                                                     // Notify delegate before we reset.
-                                                                                                    if ([self.delegate respondsToSelector:@selector(mapView:didEndDraggingMarker:)])
+                                                                                                    if ([self.delegate respondsToSelector:@selector(mapView:didCancelDraggingMarker:)])
                                                                                                     {
-                                                                                                        [self.delegate mapView:self.mapView didEndDraggingMarker:self.marker];
+                                                                                                        [self.delegate mapView:self.mapView didCancelDraggingMarker:self.marker];
                                                                                                     }
                                                                                                     // Reset the draggable marker manager.
                                                                                                     [self resetDraggableMarkerManager];
@@ -386,19 +412,7 @@
     self.marker = nil;
 
     // Remove the GMSBlockingGestureRecognizer.
-    [self removeGMSBlockingGestureRecognizer];
-}
-
-// Remove the GMSBlockingGestureRecognizer of the GMSMapView.
-- (void)removeGMSBlockingGestureRecognizer
-{
-    for (id gestureRecognizer in self.mapView.gestureRecognizers)
-    {
-        if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
-        {
-            [self.mapView removeGestureRecognizer:gestureRecognizer];
-        }
-    }
+    [GMDraggableMarkerManager removeGMSBlockingGestureRecognizerFromMapView:self.mapView];
 }
 
 // Generate an UIImageView for the marker used for animation.

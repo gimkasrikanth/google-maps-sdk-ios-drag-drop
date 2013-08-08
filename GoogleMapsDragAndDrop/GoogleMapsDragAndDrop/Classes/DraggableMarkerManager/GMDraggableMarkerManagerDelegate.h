@@ -29,6 +29,14 @@
 - (void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker;
 
 /**
+ *  Called when a drag operation is cancelled (e.g. the user did not move the marker)
+ *
+ *  @param mapView The map view where the drag operation was cancelled.
+ *  @param marker The marker for which dragging was cancelled.
+ */
+- (void)mapView:(GMSMapView *)mapView didCancelDraggingMarker:(GMSMarker *)marker;
+
+/**
  *  Called while a marker gets dragged. 
  *  This method will be called first if there was a significant change of the initial position in comparison to the touch point.
  *
