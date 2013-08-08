@@ -46,22 +46,26 @@
 /**
     Property to control duration of the marker 'jump up' animation
  */
-@property (nonatomic) NSTimeInterval markerAnimateUpDuration;
+@property (assign, nonatomic, readwrite) NSTimeInterval markerAnimateUpDuration;
 
 /**
     Property to control duration of the marker 'drop' animation
  */
-@property (nonatomic) NSTimeInterval markerAnimateDownDuration;
+@property (assign, nonatomic, readwrite) NSTimeInterval markerAnimateDownDuration;
 
+/**
+ Property to controle the duraction of the marker 'drop' animation to the initial position
+ */
+@property (assign, nonatomic, readwrite) NSTimeInterval markerAnimateDownToInitialPositionDuration;
 
 /**
     Property to control distance that marker jumps up at start of drag
  */
-@property (nonatomic) CGFloat markerAnimateUpDistance;
+@property (assign, nonatomic, readwrite) CGFloat markerAnimateUpDistance;
 
 /**
- Property to control distance that marker jumps and then drops at end of drag
+    Property to control distance that marker jumps and then drops at end of drag
  */
-@property (nonatomic) CGFloat markerAnimateDownDistance;
+@property (assign, nonatomic, readwrite) CGFloat markerAnimateDownDistance;
 
 @end

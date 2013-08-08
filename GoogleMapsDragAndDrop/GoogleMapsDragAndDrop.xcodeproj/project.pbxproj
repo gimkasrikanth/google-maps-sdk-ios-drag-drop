@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170CC28417B3CD72004B897F /* GMPrivateMapsKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 170CC28317B3CD72004B897F /* GMPrivateMapsKey.m */; };
 		175D2AEF16EAA87800FED984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2AEE16EAA87800FED984 /* UIKit.framework */; };
 		175D2AF116EAA87800FED984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2AF016EAA87800FED984 /* Foundation.framework */; };
 		175D2AF316EAA87800FED984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175D2AF216EAA87800FED984 /* CoreGraphics.framework */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170CC28317B3CD72004B897F /* GMPrivateMapsKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPrivateMapsKey.m; sourceTree = "<group>"; };
 		175D2AEB16EAA87800FED984 /* GoogleMapsDragAndDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapsDragAndDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		175D2AEE16EAA87800FED984 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		175D2AF016EAA87800FED984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +140,7 @@
 				175D2AFD16EAA87800FED984 /* GMAppDelegate.h */,
 				175D2AFE16EAA87800FED984 /* GMAppDelegate.m */,
 				DC2992091783771A00E92C7D /* GMPrivateMapsKey.h */,
+				170CC28317B3CD72004B897F /* GMPrivateMapsKey.m */,
 				17B13F871781937600F5368D /* DraggableMarkerManager */,
 				17B13F881781938600F5368D /* ViewController */,
 			);
@@ -318,6 +321,7 @@
 				DCCE515D1757D2D000766B44 /* GMDraggableMarkerManager.m in Sources */,
 				175D2B0816EAA87800FED984 /* GMViewController.m in Sources */,
 				175D2AFB16EAA87800FED984 /* main.m in Sources */,
+				170CC28417B3CD72004B897F /* GMPrivateMapsKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

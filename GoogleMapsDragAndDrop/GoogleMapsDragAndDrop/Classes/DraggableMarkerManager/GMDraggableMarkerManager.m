@@ -16,10 +16,13 @@
 #define MARKER_ANIMATE_DOWN_DISTANCE 25.0f
 
 // Default duration of marker jump up animation at start of the drag gesture.
-#define MARKER_ANIMATE_UP_DEFAULT_DURATION 0.2
+#define MARKER_ANIMATE_UP_DEFAULT_DURATION 0.2f
 
 // Default total duration of marker jump animation at end of the drag gesture.
-#define MARKER_ANIMATE_DOWN_DEFAULT_DUATION 0.2
+#define MARKER_ANIMATE_DOWN_DEFAULT_DUATION 0.2f
+
+// Default total duration of marker jump animation to the initial position at end of the drag gesture.
+#define MARKER_ANIMATE_DOWN_TO_INITIAL_POSITION_DEFAULT_DUATION 0.1f
 
 @interface GMDraggableMarkerManager()
 
@@ -61,29 +64,30 @@
     if (nil != self)
     {
         // Initialization of the map and delegates.
-        _delegate = delegate;
-        _mapView = mapView;
+        self.delegate = delegate;
+        self.mapView = mapView;
         
         // Initialize the markers set.
-        _markers = [[NSMutableSet alloc] init];
+        self.markers = [[NSMutableSet alloc] init];
         
         // Initialize the marker UIImageView.
-        _markerImageView = [[UIImageView alloc] init];
-        [_mapView addSubview:_markerImageView];
+        self.markerImageView = [[UIImageView alloc] init];
+        [self.mapView addSubview:self.markerImageView];
         
         // Initialize marker animation properties
-        _markerAnimateUpDuration = MARKER_ANIMATE_UP_DEFAULT_DURATION;
-        _markerAnimateDownDuration = MARKER_ANIMATE_DOWN_DEFAULT_DUATION;
-        _markerAnimateUpDistance = MARKER_ANIMATE_UP_DISTANCE;
-        _markerAnimateDownDistance = MARKER_ANIMATE_DOWN_DISTANCE;
+        self.markerAnimateUpDistance = MARKER_ANIMATE_UP_DISTANCE;
+        self.markerAnimateDownDistance = MARKER_ANIMATE_DOWN_DISTANCE;
+        self.markerAnimateUpDuration = MARKER_ANIMATE_UP_DEFAULT_DURATION;
+        self.markerAnimateDownDuration = MARKER_ANIMATE_DOWN_DEFAULT_DUATION;
+        self.markerAnimateDownToInitialPositionDuration = MARKER_ANIMATE_DOWN_TO_INITIAL_POSITION_DEFAULT_DUATION;
         
         // Remove the GMSBlockingGestureRecognizer
         [GMDraggableMarkerManager removeGMSBlockingGestureRecognizerFromMapView:_mapView];
         
         // Add a custom long press gesture recognizer to the map.
-        _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-        _longPressGestureRecognizer.minimumPressDuration = 0.4f;
-        [_mapView addGestureRecognizer:_longPressGestureRecognizer];
+        self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+        self.longPressGestureRecognizer.minimumPressDuration = 0.4f;
+        [self.mapView addGestureRecognizer:_longPressGestureRecognizer];
     }
     return self;
 }
@@ -268,7 +272,7 @@
                                                       if (NO == self.didDragMarker)
                                                       {
                                                           // Marker was not dragged so animate it back to its inital position.
-                                                          [UIView animateWithDuration:self.markerAnimateDownDuration
+                                                          [UIView animateWithDuration:self.markerAnimateDownToInitialPositionDuration
                                                                                 delay:0
                                                                               options:UIViewAnimationOptionCurveLinear
                                                                            animations:^(void)
